@@ -2,7 +2,6 @@ package DataTypes;
 
 public class DataPrimitives {
     public static void main(String[] args) {
-        String name = "Naruto";
         char initialLetterName = 'N';
         int age = 16; // Int support max: 2_147_483_647
         double height = 1.68;
@@ -11,5 +10,10 @@ public class DataPrimitives {
         byte jutsuAmount = 10;
         short friends = 1_456;
         float strength = 100.4F;
+
+        System.out.println(age);
+        System.out.println("strength = " + strength);
+        System.out.println("friends = " + friends);
+        System.out.println("height = " + height);
     }
 }
