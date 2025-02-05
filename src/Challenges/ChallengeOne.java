@@ -9,8 +9,8 @@ enum StatusMission {
 }
 
 class Mission {
-    private String name;
-    private Rank rank;
+    private final String name;
+    private final Rank rank;
     private StatusMission statusMission;
 
     Mission(String name, Rank rank, StatusMission statusMission) {
@@ -23,16 +23,8 @@ class Mission {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Rank getRank() {
         return rank;
-    }
-
-    public void setRank(Rank rank) {
-        this.rank = rank;
     }
 
     public StatusMission getStatusMission() {
@@ -55,7 +47,7 @@ class Mission {
 }
 
 class Ninja {
-    private String name;
+    private final String name;
     private int age;
 
     Ninja(String name, int age) {
@@ -65,10 +57,6 @@ class Ninja {
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getAge() {
@@ -108,6 +96,10 @@ public class ChallengeOne {
                 StatusMission statusMissionForNinja = missions[i].getStatusMission();
                 missions[i].setStatusMission(statusMissionForNinja);
                 System.out.println("Mission change status to: " + missions[i].getStatusMission().toString().toLowerCase() + " to " + ninjas[i].getName());
+            }
+
+            if(i <= 1) {
+                System.out.println("------------------------------");
             }
         }
     }
