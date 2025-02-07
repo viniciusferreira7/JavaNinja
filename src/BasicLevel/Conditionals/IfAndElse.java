@@ -1,4 +1,4 @@
-package Conditionals;
+package BasicLevel.Challenges.Conditionals;
 
 public class IfAndElse {
     public static void main(String[] args) {

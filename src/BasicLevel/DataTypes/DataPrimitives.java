@@ -1,4 +1,4 @@
-package DataTypes;
+package BasicLevel.Challenges.DataTypes;
 
 public class DataPrimitives {
     public static void main(String[] args) {

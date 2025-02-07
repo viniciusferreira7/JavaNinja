@@ -1,4 +1,4 @@
-package Challenges;
+package BasicLevel.Challenges;
 
 enum Rank {
     S, A, B, C, D;
