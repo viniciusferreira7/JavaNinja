@@ -1,4 +1,4 @@
-package BasicLevel.Challenges.DataTypes;
+package BasicLevel.DataTypes;
 
 public class NonPrimitiveData {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package BasicLevel.Challenges.Conditionals;
+package BasicLevel.Conditionals;
 
 import java.util.Scanner;
 

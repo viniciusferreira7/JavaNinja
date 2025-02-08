@@ -1,4 +1,4 @@
-package BasicLevel.Challenges.Conditionals;
+package BasicLevel.Conditionals;
 
 public class Ternary {
     public static void main(String[] args) {
