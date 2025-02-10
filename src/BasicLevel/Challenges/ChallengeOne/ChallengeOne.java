@@ -1,10 +1,10 @@
-package BasicLevel.Challenges;
+package BasicLevel.Challenges.ChallengeOne;
 
 enum Rank {
     S, A, B, C, D;
 }
 
-enum StatusMission {
+    enum StatusMission {
     PENDING, IN_PROCESSING, COMPLETED, FAILED, FORBIDDEN
 }
 
