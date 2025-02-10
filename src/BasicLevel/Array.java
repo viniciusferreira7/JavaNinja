@@ -10,6 +10,17 @@ public class Array {
         ninjas[1] = "Sakura";
         System.out.println(ninjas[3]);
 
+        // Redeclaration
+        int slotsAmount = 2;
+        ninjas = new String[slotsAmount];
+        ninjas[0] = "Hashirama";
+        ninjas[1] = "Tobirama";
+        System.out.println("ninjas = " + ninjas[0]);
+
+        for (int i = 0; i < slotsAmount; i++) {
+            System.out.println(ninjas[i]);
+        }
+
         // Int starts with 0
         int[] age = new int[2];
         age[0] = 13;
