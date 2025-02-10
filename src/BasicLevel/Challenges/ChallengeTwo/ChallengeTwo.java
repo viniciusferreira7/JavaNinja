@@ -15,7 +15,6 @@ class Ninja {
     private int age;
     private Level level;
     private final String createdAt;
-    private String updatedAt;
 
     Ninja(String name, int age, Level level) {
         this.name = name;
