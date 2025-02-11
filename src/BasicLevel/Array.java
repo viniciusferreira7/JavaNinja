@@ -34,5 +34,14 @@ public class Array {
         // Double starts with 0.0
         double[] floatNumber = new double[2];
         System.out.println(floatNumber[0]);
+
+        // Multidimensional arrays
+        String[][] multiplesArray = new String[2][2];
+
+        multiplesArray[0][0] = "Naruto";
+
+        System.out.println(multiplesArray[0]);
+        System.out.println(multiplesArray[0][0]);
+        System.out.println(multiplesArray[0][1]);
     }
 }
