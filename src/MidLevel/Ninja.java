@@ -1,6 +1,6 @@
 package MidLevel;
 
-public class Ninja {
+public abstract class Ninja {
     String name;
     int age;
     String village;
