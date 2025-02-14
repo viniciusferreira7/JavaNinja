@@ -4,7 +4,7 @@ enum Level {
     GENIN, CHUNIN, JONIN
 };
 
-public abstract class Ninja {
+public class Ninja {
     protected final String name;
     protected final int age;
     protected Level level;
@@ -73,7 +73,7 @@ public abstract class Ninja {
             return "Hyuga";
         }
 
-        return "";
+        return "wihout clan";
 
     }
 
@@ -85,8 +85,9 @@ public abstract class Ninja {
         info += "--------------------------------------------------------------\n";
         info += String.format(
                 "|%-15s|%-5d|%-10s|%-20s|%-15s|\n",
-                name, age, level, currentMission, specialSkill
+                name, age, level.toString().toLowerCase(), currentMission, specialSkill
         );
         return info;
     }
+
 }

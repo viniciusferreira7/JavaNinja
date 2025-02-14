@@ -20,7 +20,7 @@ public class Uchiha extends Ninja {
         info += "--------------------------------------------------------------\n";
         info += String.format(
                 "|%-15s|%-5d|%-10s|%-20s|%-15s|%-15s|%-15s|\n",
-                name, age, level, currentMission, specialSkill, doujutsu, clan
+                name, age, level.toString().toLowerCase(), currentMission, specialSkill, doujutsu, clan
         );
         return info;
     }

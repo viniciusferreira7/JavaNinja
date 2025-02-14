@@ -8,6 +8,7 @@ public class Main {
         Scanner input = new Scanner(System.in);
 
         ArrayList<Uchiha> uchihaNinjasRecords = new ArrayList<Uchiha>();
+        ArrayList<Ninja> withoutClanNinjasRecords = new ArrayList<Ninja>();
 
         int optionSelected = 0;
         int loops = 0;
@@ -30,11 +31,6 @@ public class Main {
            int clanOption;
            String clan;
 
-            String name;
-            int age;
-            int levelOption;
-            String specialSkill;
-
            boolean isValidIndex = false;
 
             optionSelected = input.nextInt();
@@ -43,78 +39,44 @@ public class Main {
 
             switch (optionSelected){
                 case 1:
-                    System.out.println("Choose a clan: ");
-                    System.out.println("1. Uzumaki");
-                    System.out.println("2. Uchiha");
-                    System.out.println("3. Hyuga");
-                    clanOption = input.nextInt();
-                    input.nextLine();
+                  Ninja createdNinja = Register.createNinja(input);
 
-                    clan = Ninja.getClanByOption(clanOption);
+                   if(createdNinja.clan.equals("Uchiha")){
+                       Uchiha registeredUchihaNinja = new Uchiha(
+                               createdNinja.name,
+                               createdNinja.age,
+                               createdNinja.level,
+                               createdNinja.specialSkill,
+                               createdNinja.clan
+                       );
 
-                    if (clan.isEmpty()) {
-                        return;
+                       uchihaNinjasRecords.add(registeredUchihaNinja);
+                   }
+
+                   if(createdNinja.clan.equals("wihout clan")){
+                      Ninja registeredWithoutClanNinja = new Ninja(
+                               createdNinja.name,
+                               createdNinja.age,
+                               createdNinja.level,
+                               createdNinja.specialSkill,
+                               createdNinja.clan
+                      );
+
+                       withoutClanNinjasRecords.add(registeredWithoutClanNinja);
+
+                   } else {
+                        System.out.println("\n ✔️ Ninja (" + createdNinja.clan  + ") has been successfully registered");
                     }
 
-                    System.out.println("Enter with name: ");
-                    name = input.nextLine();
-
-                    System.out.println("Enter with age: ");
-                    age = input.nextInt();
-
-                    System.out.println("Enter with a ninja level: ");
-                    System.out.println("1. Genin");
-                    System.out.println("2. Chūnin");
-                    System.out.println("3. Jōnin");
-
-                    System.out.println("Last but not least, which one uses a special skill? ");
-                    specialSkill = input.nextLine();
-
-                    levelOption = input.nextInt();
-                    input.nextLine();
-
-                    if(levelOption <= 3 && levelOption >= 0){
-                       Level level =Ninja.getLevelByOption(levelOption);
-
-                      /* if(clan.equals("Uzumaki")){
-                            Ninja registedUchihaNinja = newNinja(name, age, level);
-                           uchihaNinjasRecords.add(registedNinja);
-                       }*/
-
-                       if(clan.equals("Uchiha")){
-                           Uchiha registedUchihaNinja = new Uchiha(name, age, level, specialSkill, clan );
-                           uchihaNinjasRecords.add(registedUchihaNinja);
-                       }
-
-                        System.out.println("\n ✔️ Ninja (" + clan  + ") has been successfully registered");
-
-
-                        createdRecordsNumber++;
-                    } else {
-                        System.out.println("❌ Invalid option");
-                    }
+                    createdRecordsNumber++;
 
                     break;
                 case 2:
-                    System.out.println("Which clan is the ninja? ");
-                    System.out.println("1. Uzumaki");
-                    System.out.println("2. Uchiha");
-                    System.out.println("3. Hyuga");
-                    clanOption = input.nextInt();
-                    input.nextLine();
+                    clan = Register.getClan(input);
 
-                    clan = Ninja.getClanByOption(clanOption);
+                    int optionIndex = Register.getIdxFromOption(input);
 
-                    if (clan.isEmpty()) {
-                        System.out.println("❌ Clan not found!");
-                        return;
-                    }
-
-                    System.out.println("Enter with number of item in list");
-                    int option = input.nextInt();
-                    input.nextLine();
-
-                    int optionIndex = option - 1;
+                    Ninja updatedNinja = Register.updatedNinja(input, clan);
 
                     /*if(clan.equals("Uzumaki")){
                         boolean isNewValidIndex = optionIndex >= 0 && optionIndex < ninjaRecords.size();
@@ -162,68 +124,57 @@ public class Main {
                          isValidIndex = optionIndex >= 0 && optionIndex < uchihaNinjasRecords.size();
 
                         if (isValidIndex) {
-                            Uchiha previousNinja = uchihaNinjasRecords.get(optionIndex);
+                            Uchiha updatedUchihaNinja = new Uchiha(
+                                    updatedNinja.name,
+                                    updatedNinja.age,
+                                    updatedNinja.level,
+                                    updatedNinja.specialSkill,
+                                    updatedNinja.clan
+                            );
 
-                            System.out.println(previousNinja.getInfoSquare());
+                            uchihaNinjasRecords.set(optionIndex, updatedUchihaNinja);
 
-                            System.out.println("Enter with new name: ");
-                            name = input.nextLine();
+                            Uchiha uchihaNinja = uchihaNinjasRecords.get(optionIndex);
+                            System.out.println(uchihaNinja.getName() + " is updated");
 
-                            System.out.println("Enter with new age: ");
-                            age = input.nextInt();
+                            updatedRecordsNumber++;
 
-                            System.out.println("Enter with a new ninja level: ");
-                            System.out.println("1. Genin");
-                            System.out.println("2. Chūnin");
-                            System.out.println("3. Jōnin");
+                        }  else {
+                            System.out.println("❌ Invalid index");
+                        }
 
-                            levelOption = input.nextInt();
-                            input.nextLine();
+                    }
 
-                            System.out.println("Update your special skill? ");
-                            specialSkill = input.nextLine();
+                    if(clan.equals("without clan")){
+                        isValidIndex = optionIndex >= 0 && optionIndex < withoutClanNinjasRecords.size();
 
-                            if(levelOption <= 3 && levelOption >= 0){
-                                Level level = Ninja.getLevelByOption(levelOption);
+                        if (isValidIndex) {
+                            Ninja updatedWithoutClanNinja = new Ninja(
+                                    updatedNinja.name,
+                                    updatedNinja.age,
+                                    updatedNinja.level,
+                                    updatedNinja.specialSkill,
+                                    updatedNinja.clan
+                            );
 
-                                Uchiha updatedUchihaNinja = new Uchiha(name, age, level, specialSkill, clan);
-                                uchihaNinjasRecords.set(optionIndex, updatedUchihaNinja);
+                            withoutClanNinjasRecords.set(optionIndex, updatedWithoutClanNinja);
 
-                                Ninja ninja = uchihaNinjasRecords.get(optionIndex);
-                                System.out.println(ninja.getName() + " is updated");
+                            Ninja withoutNinja = withoutClanNinjasRecords.get(optionIndex);
+                            System.out.println(withoutNinja.getName() + " is updated");
 
-                                updatedRecordsNumber++;
-
-                            } else {
-                                System.out.println("❌ Invalid option");
-                            }
+                            updatedRecordsNumber++;
 
                         } else {
                             System.out.println("❌ Invalid index");
                         }
-                    }
 
+                    }
 
                     break;
                 case 3:
-                    System.out.println("Which clan is the ninja? ");
-                    System.out.println("1. Uzumaki");
-                    System.out.println("2. Uchiha");
-                    System.out.println("3. Hyuga");
-                    clanOption = input.nextInt();
-                    input.nextLine();
+                   clan = Register.getClan(input);
 
-                    clan = Ninja.getClanByOption(clanOption);
-
-                    if (clan.isEmpty()) {
-                        System.out.println("❌ Clan not found!");
-                        return;
-                    }
-
-                    System.out.println("Enter with number of item in list");
-                    option = input.nextInt();
-
-                    optionIndex = option - 1;
+                    optionIndex = Register.getIdxFromOption(input);
 
                     if(clan.equals("Uchiha")){
                         isValidIndex = optionIndex >= 0 && optionIndex < uchihaNinjasRecords.size();
@@ -233,6 +184,24 @@ public class Main {
                             System.out.println(ninja.getInfoSquare());
 
                             uchihaNinjasRecords.remove(optionIndex);
+                            System.out.println(ninja.getName() + " is removed");
+
+                            deletedRecordsNumber++;
+
+                        } else {
+                            System.out.println("❌ Invalid index");
+                        }
+
+                    }
+
+                    if(clan.equals("without clan")){
+                        isValidIndex = optionIndex >= 0 && optionIndex < withoutClanNinjasRecords.size();
+
+                        if (isValidIndex) {
+                            Ninja ninja = withoutClanNinjasRecords.get(optionIndex);
+                            System.out.println(ninja.getInfoSquare());
+
+                            withoutClanNinjasRecords.remove(optionIndex);
                             System.out.println(ninja.getName() + " is removed");
 
                             deletedRecordsNumber++;
@@ -251,7 +220,17 @@ public class Main {
                             System.out.println("\n " + listItem + ". Ninja clãn Uchiha:");
                             System.out.println(uchihaNinjasRecords.get(i).getInfoSquare());
                         }
-                    } else {
+                    }
+
+                    if(!withoutClanNinjasRecords.isEmpty()){
+                        for (int i = 0; i < withoutClanNinjasRecords.size(); i++) {
+                            int listItem = i + 1;
+                            System.out.println("\n " + listItem + ". Ninja without:");
+                            System.out.println(withoutClanNinjasRecords.get(i).getInfoSquare());
+                        }
+                    }
+
+                    if(!uchihaNinjasRecords.isEmpty() && !withoutClanNinjasRecords.isEmpty()) {
                         System.out.println("You don't register anyone in list");
                     }
                     break;
