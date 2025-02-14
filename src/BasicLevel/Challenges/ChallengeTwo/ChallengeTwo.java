@@ -59,8 +59,6 @@ class Ninja {
 
 public class ChallengeTwo {
     public static void main(String[] args){
-
-
         Scanner input = new Scanner(System.in);
 
         ArrayList<Ninja> ninjaRecords = new ArrayList<Ninja>();

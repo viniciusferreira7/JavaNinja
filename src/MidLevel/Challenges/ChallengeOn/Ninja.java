@@ -5,17 +5,19 @@ enum Level {
 };
 
 public abstract class Ninja {
-    protected String name;
-    protected int age;
+    protected final String name;
+    protected final int age;
     protected Level level;
     protected Mission currentMission;
     protected String specialSkill;
+    protected final String clan;
 
-    Ninja(String name, int age, Level level, String specialSkill){
+    Ninja(String name, int age, Level level, String specialSkill, String clan){
         this.name = name;
         this.age = age;
         this.level = level;
         this.specialSkill = specialSkill;
+        this.clan = clan;
     }
 
     public void setSpecialSkill(String specialSkill){
@@ -44,6 +46,35 @@ public abstract class Ninja {
 
     public Level getLevel(){
         return level;
+    }
+
+    public static Level getLevelByOption(int optionForLevel) {
+        if(optionForLevel == 1){
+            return Level.GENIN;
+        }
+
+        if(optionForLevel == 2){
+            return Level.CHUNIN;
+        }
+
+        return Level.JONIN;
+    }
+
+    public static String getClanByOption(int clanOption){
+        if(clanOption == 1){
+            return "Uzumaki";
+        }
+
+        if(clanOption == 2){
+            return "Uchiha";
+        }
+
+        if(clanOption == 3){
+            return "Hyuga";
+        }
+
+        return "";
+
     }
 
     public String getInfoSquare() {
