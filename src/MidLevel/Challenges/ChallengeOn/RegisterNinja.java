@@ -2,7 +2,7 @@ package MidLevel.Challenges.ChallengeOn;
 
 import java.util.Scanner;
 
-public class Register {
+public class RegisterNinja {
     public static String getClan(Scanner input){
         System.out.println("Which clan is the ninja? ");
         System.out.println("1. Uzumaki");
@@ -57,17 +57,17 @@ public class Register {
     }
 
     public static Ninja createNinja(Scanner input){
-       String clan = Register.getClan(input);
-       String name = Register.getName(input);
-       int age = Register.getAge(input);
-       Level level = Register.getLevel(input);
-       String specialSkill = Register.getSpecialSkill(input);
+       String clan = RegisterNinja.getClan(input);
+       String name = RegisterNinja.getName(input);
+       int age = RegisterNinja.getAge(input);
+       Level level = RegisterNinja.getLevel(input);
+       String specialSkill = RegisterNinja.getSpecialSkill(input);
 
-        return new Ninja(name, age, level, specialSkill, clan);
+        return new Ninja(name, age, level, specialSkill, clan, null);
     }
 
     public static int getIdxFromOption(Scanner input){
-        System.out.println("Enter with number of item in list");
+        System.out.println("Enter with number of ninja in list");
         int option = input.nextInt();
         input.nextLine();
 
@@ -75,12 +75,12 @@ public class Register {
     }
 
     public static Ninja updatedNinja(Scanner input, String clan){
-       String name = Register.getName(input);
-       int age = Register.getAge(input);
-       Level level = Register.getLevel(input);
-       String specialSkill = Register.getSpecialSkill(input);
+       String name = RegisterNinja.getName(input);
+       int age = RegisterNinja.getAge(input);
+       Level level = RegisterNinja.getLevel(input);
+       String specialSkill = RegisterNinja.getSpecialSkill(input);
 
-        return new Ninja(name, age, level, specialSkill, clan);
+        return new Ninja(name, age, level, specialSkill, clan, null);
     }
 
 }

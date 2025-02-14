@@ -18,7 +18,7 @@ public class Main {
         int updatedRecordsNumber = 0;
         int deletedRecordsNumber = 0;
 
-        while(optionSelected != 5){
+        while(optionSelected != 7){
             if(loops == 0) {
                 System.out.println("\n Welcome to the ninja record books");
             }
@@ -27,7 +27,9 @@ public class Main {
             System.out.println("2. Update Ninja"); // ✔️
             System.out.println("3. Delete Ninja"); // ✔️
             System.out.println("4. List Ninjas"); // ✔️
-            System.out.println("5. Exit"); // ✔️
+            System.out.println("5. Register mission to ninja"); // ✔️
+            System.out.println("6. Update status mission to ninja"); // ✔️
+            System.out.println("7. Exit"); // ✔️
             System.out.print("Choose an option: ");
 
            int clanOption;
@@ -42,7 +44,7 @@ public class Main {
 
             switch (optionSelected){
                 case 1:
-                  Ninja createdNinja = Register.createNinja(input);
+                  Ninja createdNinja = RegisterNinja.createNinja(input);
 
                    if(createdNinja.clan.equals("Uzumaki")){
                        Uzumaki registeredUzumakiNinja = new Uzumaki(
@@ -50,7 +52,8 @@ public class Main {
                                createdNinja.age,
                                createdNinja.level,
                                createdNinja.specialSkill,
-                               createdNinja.clan
+                               createdNinja.clan,
+                               null
                        );
 
                        uzumakiClanNinjasRecords.add(registeredUzumakiNinja);
@@ -62,7 +65,8 @@ public class Main {
                                createdNinja.age,
                                createdNinja.level,
                                createdNinja.specialSkill,
-                               createdNinja.clan
+                               createdNinja.clan,
+                               null
                        );
 
                        uchihaClanNinjasRecords.add(registeredUchihaNinja);
@@ -74,7 +78,8 @@ public class Main {
                                createdNinja.age,
                                createdNinja.level,
                                createdNinja.specialSkill,
-                               createdNinja.clan
+                               createdNinja.clan,
+                               null
                        );
 
                        hyugaClanNinjasRecords.add(registeredHyugaNinja);
@@ -86,7 +91,8 @@ public class Main {
                                createdNinja.age,
                                createdNinja.level,
                                createdNinja.specialSkill,
-                               createdNinja.clan
+                               createdNinja.clan,
+                              null
                       );
 
                        withoutClanNinjasRecords.add(registeredWithoutClanNinja);
@@ -99,29 +105,29 @@ public class Main {
 
                     break;
                 case 2:
-                    clan = Register.getClan(input);
+                    clan = RegisterNinja.getClan(input);
 
-                    optionIndex = Register.getIdxFromOption(input);
+                    optionIndex = RegisterNinja.getIdxFromOption(input);
 
-                    Ninja updatedNinja = Register.updatedNinja(input, clan);
+                    Ninja updatedNinja = RegisterNinja.updatedNinja(input, clan);
 
                     if(clan.equals("Uzumaki")){
                          isValidIndex = optionIndex >= 0 && optionIndex < uzumakiClanNinjasRecords.size();
 
                         if (isValidIndex) {
-                            Uzumaki updateUzumakiNinja = new Uzumaki(
+                            Uzumaki updatedUzumakiNinja = new Uzumaki(
                                     updatedNinja.name,
                                     updatedNinja.age,
                                     updatedNinja.level,
                                     updatedNinja.specialSkill,
-                                    updatedNinja.clan
+                                    updatedNinja.clan,
+                                    updatedNinja.currentMission != null  ? updatedNinja.currentMission : null
                             );
 
-                            uzumakiClanNinjasRecords.set(optionIndex, updateUzumakiNinja);
+                            uzumakiClanNinjasRecords.set(optionIndex, updatedUzumakiNinja);
 
-                            Uchiha uzumakiNinja = uchihaClanNinjasRecords.get(optionIndex);
-                            System.out.println(uzumakiNinja.getInfoSquare());
-                            System.out.println(uzumakiNinja.getName() + " is updated");
+                            System.out.println(updatedUzumakiNinja.getInfoSquare());
+                            System.out.println(updatedUzumakiNinja.getName() + " is updated");
 
                             updatedRecordsNumber++;
 
@@ -140,14 +146,14 @@ public class Main {
                                     updatedNinja.age,
                                     updatedNinja.level,
                                     updatedNinja.specialSkill,
-                                    updatedNinja.clan
+                                    updatedNinja.clan,
+                                    updatedNinja.currentMission != null  ? updatedNinja.currentMission : null
                             );
 
                             uchihaClanNinjasRecords.set(optionIndex, updatedUchihaNinja);
 
-                            Uchiha uchihaNinja = uchihaClanNinjasRecords.get(optionIndex);
-                            System.out.println(uchihaNinja.getInfoSquare());
-                            System.out.println(uchihaNinja.getName() + " is updated");
+                            System.out.println(updatedUchihaNinja.getInfoSquare());
+                            System.out.println(updatedUchihaNinja.getName() + " is updated");
 
                             updatedRecordsNumber++;
 
@@ -166,14 +172,15 @@ public class Main {
                                     updatedNinja.age,
                                     updatedNinja.level,
                                     updatedNinja.specialSkill,
-                                    updatedNinja.clan
+                                    updatedNinja.clan,
+                                    updatedNinja.currentMission != null  ? updatedNinja.currentMission : null
                             );
 
                             hyugaClanNinjasRecords.set(optionIndex, updatedHyugaNinja);
 
                             Hyuga hyugaNinja = hyugaClanNinjasRecords.get(optionIndex);
-                            System.out.println(hyugaNinja.getInfoSquare());
-                            System.out.println(hyugaNinja.getName() + " is updated");
+                            System.out.println(updatedHyugaNinja.getInfoSquare());
+                            System.out.println(updatedHyugaNinja.getName() + " is updated");
 
                             updatedRecordsNumber++;
 
@@ -192,14 +199,15 @@ public class Main {
                                     updatedNinja.age,
                                     updatedNinja.level,
                                     updatedNinja.specialSkill,
-                                    updatedNinja.clan
+                                    updatedNinja.clan,
+                                    null
                             );
 
                             withoutClanNinjasRecords.set(optionIndex, updatedWithoutClanNinja);
 
                             Ninja withoutNinja = withoutClanNinjasRecords.get(optionIndex);
-                            System.out.println(withoutNinja.getInfoSquare());
-                            System.out.println(withoutNinja.getName() + " is updated");
+                            System.out.println(updatedWithoutClanNinja.getInfoSquare());
+                            System.out.println(updatedWithoutClanNinja.getName() + " is updated");
 
                             updatedRecordsNumber++;
 
@@ -211,9 +219,9 @@ public class Main {
 
                     break;
                 case 3:
-                   clan = Register.getClan(input);
+                   clan = RegisterNinja.getClan(input);
 
-                    optionIndex = Register.getIdxFromOption(input);
+                    optionIndex = RegisterNinja.getIdxFromOption(input);
 
                     if(clan.equals("Uzumaki")){
                         isValidIndex = optionIndex >= 0 && optionIndex < uzumakiClanNinjasRecords.size();
@@ -334,6 +342,230 @@ public class Main {
                     }
                     break;
                 case 5:
+                    clan = RegisterNinja.getClan(input);
+
+                    optionIndex = RegisterNinja.getIdxFromOption(input);
+
+                    if(clan.equals("Uzumaki")){
+                        isValidIndex = optionIndex >= 0 && optionIndex < uzumakiClanNinjasRecords.size();
+
+                        if (isValidIndex) {
+                            Uzumaki uzumakiNinja = uzumakiClanNinjasRecords.get(optionIndex);
+                            
+                            Mission mission = RegisterMission.createMission(input);
+                            
+                            Uzumaki updatedUzumakiNinja = new Uzumaki(
+                                    uzumakiNinja.name,
+                                    uzumakiNinja.age,
+                                    uzumakiNinja.level,
+                                    uzumakiNinja.specialSkill,
+                                    uzumakiNinja.clan,
+                                    mission
+                            );
+
+                            uzumakiClanNinjasRecords.set(optionIndex, updatedUzumakiNinja);
+
+                            System.out.println(updatedUzumakiNinja.getInfoSquare());
+                            System.out.println(updatedUzumakiNinja.getName() + " is updated");
+
+                            updatedRecordsNumber++;
+
+                        }  else {
+                            System.out.println("❌ Invalid index");
+                        }
+
+                    }
+                    
+                    if(clan.equals("Uchiha")){
+                        isValidIndex = optionIndex >= 0 && optionIndex < uchihaClanNinjasRecords.size();
+
+                        if (isValidIndex) {
+                            Uchiha uchihaNinja = uchihaClanNinjasRecords.get(optionIndex);
+                            
+                            Mission mission = RegisterMission.createMission(input);
+                            
+                            Uchiha updatedUchihaNinja = new Uchiha(
+                                    uchihaNinja.name,
+                                    uchihaNinja.age,
+                                    uchihaNinja.level,
+                                    uchihaNinja.specialSkill,
+                                    uchihaNinja.clan,
+                                    mission
+                            );
+
+                            uchihaClanNinjasRecords.set(optionIndex, updatedUchihaNinja);
+
+                            System.out.println(updatedUchihaNinja.getInfoSquare());
+                            System.out.println(updatedUchihaNinja.getName() + " is updated");
+
+                            updatedRecordsNumber++;
+
+                        }  else {
+                            System.out.println("❌ Invalid index");
+                        }
+
+                    }
+                    
+                    if(clan.equals("Hyuga")){
+                        isValidIndex = optionIndex >= 0 && optionIndex < hyugaClanNinjasRecords.size();
+
+                        if (isValidIndex) {
+                            Hyuga hyugaNinja = hyugaClanNinjasRecords.get(optionIndex);
+                            
+                            Mission mission = RegisterMission.createMission(input);
+                            
+                            Hyuga updatedHyugaNinja = new Hyuga(
+                                    hyugaNinja.name,
+                                    hyugaNinja.age,
+                                    hyugaNinja.level,
+                                    hyugaNinja.specialSkill,
+                                    hyugaNinja.clan,
+                                    mission
+                            );
+
+                            hyugaClanNinjasRecords.set(optionIndex, updatedHyugaNinja);
+
+                            System.out.println(updatedHyugaNinja.getInfoSquare());
+                            System.out.println(updatedHyugaNinja.getName() + " is updated");
+
+                            updatedRecordsNumber++;
+
+                        }  else {
+                            System.out.println("❌ Invalid index");
+                        }
+
+                    }
+
+                    break;
+
+                case 6:
+                    clan = RegisterNinja.getClan(input);
+
+                    optionIndex = RegisterNinja.getIdxFromOption(input);
+
+                    if(clan.equals("Uzumaki")){
+                        isValidIndex = optionIndex >= 0 && optionIndex < uzumakiClanNinjasRecords.size();
+
+                        if (isValidIndex) {
+                            Uzumaki uzumakiNinja = uzumakiClanNinjasRecords.get(optionIndex);
+
+                            Status status = RegisterMission.updateMissionStatus(input);
+
+                            if(uzumakiNinja.currentMission == null){
+                                System.out.println("You must register a mission first");
+                            }
+
+                            Mission missionUpdated =  new Mission(
+                                    uzumakiNinja.currentMission.getName(),
+                                    status,
+                                    uzumakiNinja.currentMission.getRank()
+                            );
+
+                            Uzumaki updatedUzumakiNinja = new Uzumaki(
+                                    uzumakiNinja.name,
+                                    uzumakiNinja.age,
+                                    uzumakiNinja.level,
+                                    uzumakiNinja.specialSkill,
+                                    uzumakiNinja.clan,
+                                    missionUpdated
+                            );
+
+                            uzumakiClanNinjasRecords.set(optionIndex, updatedUzumakiNinja);
+
+                            System.out.println(uzumakiNinja.getInfoSquare());
+                            System.out.println(uzumakiNinja.getName() + " is updated");
+
+                            updatedRecordsNumber++;
+
+                        }  else {
+                            System.out.println("❌ Invalid index");
+                        }
+
+                    }
+
+                    if(clan.equals("Uchiha")){
+                        isValidIndex = optionIndex >= 0 && optionIndex < uchihaClanNinjasRecords.size();
+
+                        if (isValidIndex) {
+                            Uchiha uchihaNinja = uchihaClanNinjasRecords.get(optionIndex);
+
+                            Status status = RegisterMission.updateMissionStatus(input);
+
+                            if(uchihaNinja.currentMission == null){
+                                System.out.println("You must register a mission first");
+                            }
+
+                            Mission missionUpdated = new Mission(
+                                    uchihaNinja.currentMission.getName(),
+                                    status,
+                                    uchihaNinja.currentMission.getRank()
+                            );
+
+                            Uchiha updatedUchihaNinja = new Uchiha(
+                                    uchihaNinja.name,
+                                    uchihaNinja.age,
+                                    uchihaNinja.level,
+                                    uchihaNinja.specialSkill,
+                                    uchihaNinja.clan,
+                                    missionUpdated
+                            );
+
+                            uchihaClanNinjasRecords.set(optionIndex, updatedUchihaNinja);
+
+                            System.out.println(updatedUchihaNinja.getInfoSquare());
+                            System.out.println(updatedUchihaNinja.getName() + " is updated");
+
+                            updatedRecordsNumber++;
+
+                        }  else {
+                            System.out.println("❌ Invalid index");
+                        }
+
+                    }
+
+                    if(clan.equals("Hyuga")){
+                        isValidIndex = optionIndex >= 0 && optionIndex < hyugaClanNinjasRecords.size();
+
+                        if (isValidIndex) {
+                            Hyuga hyugaNinja = hyugaClanNinjasRecords.get(optionIndex);
+
+                            Status status = RegisterMission.updateMissionStatus(input);
+
+                            if(hyugaNinja.currentMission == null){
+                                System.out.println("You must register a mission first");
+                            }
+
+                            Mission missionUpdated = new Mission(
+                                    hyugaNinja.currentMission.getName(),
+                                    status,
+                                    hyugaNinja.currentMission.getRank()
+                            );
+
+                            Hyuga updatedHyugaNinja = new Hyuga(
+                                    hyugaNinja.name,
+                                    hyugaNinja.age,
+                                    hyugaNinja.level,
+                                    hyugaNinja.specialSkill,
+                                    hyugaNinja.clan,
+                                    missionUpdated
+                            );
+
+                            hyugaClanNinjasRecords.set(optionIndex, updatedHyugaNinja);
+
+                            System.out.println(updatedHyugaNinja.getInfoSquare());
+                            System.out.println(updatedHyugaNinja.getName() + " is updated");
+
+                            updatedRecordsNumber++;
+
+                        }  else {
+                            System.out.println("❌ Invalid index");
+                        }
+
+                    }
+
+                    break;
+
+                case 7:
                     System.out.println("\n😁 Thanks for your participation");
                     if (createdRecordsNumber > 0) {
                         System.out.println("🎉 You successfully created " + createdRecordsNumber + " record(s)!");
