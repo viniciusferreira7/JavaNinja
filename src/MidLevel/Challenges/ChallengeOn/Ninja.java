@@ -73,7 +73,7 @@ public class Ninja {
             return "Hyuga";
         }
 
-        return "wihout clan";
+        return "without clan";
 
     }
 

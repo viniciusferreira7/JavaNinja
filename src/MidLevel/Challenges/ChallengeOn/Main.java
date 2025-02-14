@@ -7,7 +7,9 @@ public class Main {
     public static void main(String[] args){
         Scanner input = new Scanner(System.in);
 
-        ArrayList<Uchiha> uchihaNinjasRecords = new ArrayList<Uchiha>();
+        ArrayList<Uzumaki> uzumakiClanNinjasRecords = new ArrayList<Uzumaki>();
+        ArrayList<Uchiha> uchihaClanNinjasRecords = new ArrayList<Uchiha>();
+        ArrayList<Hyuga> hyugaClanNinjasRecords = new ArrayList<Hyuga>();
         ArrayList<Ninja> withoutClanNinjasRecords = new ArrayList<Ninja>();
 
         int optionSelected = 0;
@@ -30,6 +32,7 @@ public class Main {
 
            int clanOption;
            String clan;
+           int optionIndex;
 
            boolean isValidIndex = false;
 
@@ -41,6 +44,18 @@ public class Main {
                 case 1:
                   Ninja createdNinja = Register.createNinja(input);
 
+                   if(createdNinja.clan.equals("Uzumaki")){
+                       Uzumaki registeredUzumakiNinja = new Uzumaki(
+                               createdNinja.name,
+                               createdNinja.age,
+                               createdNinja.level,
+                               createdNinja.specialSkill,
+                               createdNinja.clan
+                       );
+
+                       uzumakiClanNinjasRecords.add(registeredUzumakiNinja);
+                   }
+
                    if(createdNinja.clan.equals("Uchiha")){
                        Uchiha registeredUchihaNinja = new Uchiha(
                                createdNinja.name,
@@ -50,10 +65,22 @@ public class Main {
                                createdNinja.clan
                        );
 
-                       uchihaNinjasRecords.add(registeredUchihaNinja);
+                       uchihaClanNinjasRecords.add(registeredUchihaNinja);
                    }
 
-                   if(createdNinja.clan.equals("wihout clan")){
+                   if(createdNinja.clan.equals("Hyuga")){
+                       Hyuga registeredHyugaNinja = new Hyuga(
+                               createdNinja.name,
+                               createdNinja.age,
+                               createdNinja.level,
+                               createdNinja.specialSkill,
+                               createdNinja.clan
+                       );
+
+                       hyugaClanNinjasRecords.add(registeredHyugaNinja);
+                   }
+
+                   if(createdNinja.clan.equals("without clan")){
                       Ninja registeredWithoutClanNinja = new Ninja(
                                createdNinja.name,
                                createdNinja.age,
@@ -64,9 +91,9 @@ public class Main {
 
                        withoutClanNinjasRecords.add(registeredWithoutClanNinja);
 
-                   } else {
-                        System.out.println("\n ✔️ Ninja (" + createdNinja.clan  + ") has been successfully registered");
-                    }
+                   }
+
+                   System.out.println("\n ✔️ Ninja (" + createdNinja.clan  + ") has been successfully registered");
 
                     createdRecordsNumber++;
 
@@ -74,54 +101,38 @@ public class Main {
                 case 2:
                     clan = Register.getClan(input);
 
-                    int optionIndex = Register.getIdxFromOption(input);
+                    optionIndex = Register.getIdxFromOption(input);
 
                     Ninja updatedNinja = Register.updatedNinja(input, clan);
 
-                    /*if(clan.equals("Uzumaki")){
-                        boolean isNewValidIndex = optionIndex >= 0 && optionIndex < ninjaRecords.size();
+                    if(clan.equals("Uzumaki")){
+                         isValidIndex = optionIndex >= 0 && optionIndex < uzumakiClanNinjasRecords.size();
 
-                        if (isNewValidIndex) {
-                            Ninja oldNinja = ninjaRecords.get(optionIndex);
+                        if (isValidIndex) {
+                            Uzumaki updateUzumakiNinja = new Uzumaki(
+                                    updatedNinja.name,
+                                    updatedNinja.age,
+                                    updatedNinja.level,
+                                    updatedNinja.specialSkill,
+                                    updatedNinja.clan
+                            );
 
-                            System.out.println(oldNinja.showDetails());
+                            uzumakiClanNinjasRecords.set(optionIndex, updateUzumakiNinja);
 
-                            System.out.println("Enter with new name: ");
-                            String newName = input.nextLine();
+                            Uchiha uzumakiNinja = uchihaClanNinjasRecords.get(optionIndex);
+                            System.out.println(uzumakiNinja.getInfoSquare());
+                            System.out.println(uzumakiNinja.getName() + " is updated");
 
-                            System.out.println("Enter with new age: ");
-                            int newAge = input.nextInt();
+                            updatedRecordsNumber++;
 
-                            System.out.println("Enter with a new ninja level: ");
-                            System.out.println("1. Genin");
-                            System.out.println("2. Chūnin");
-                            System.out.println("3. Jōnin");
-
-                            int newLevelOption = input.nextInt();
-                            input.nextLine();
-
-                            if(newLevelOption <= 3 && newLevelOption >= 0){
-                                Level level =Ninja.getLevelByOption(newLevelOption);
-
-                                Ninja updatedNinja = newNinja(newName, newAge, level);
-                                ninjaRecords.set(optionIndex, updatedNinja);
-
-                                Ninja ninja = ninjaRecords.get(optionIndex);
-                                System.out.println(ninja.getName() + " is updated");
-
-                                updatedRecordsNumber++;
-
-                            } else {
-                                System.out.println("❌ Invalid option");
-                            }
-
-                        } else {
+                        }  else {
                             System.out.println("❌ Invalid index");
                         }
+
                     }
-*/
+
                     if(clan.equals("Uchiha")){
-                         isValidIndex = optionIndex >= 0 && optionIndex < uchihaNinjasRecords.size();
+                         isValidIndex = optionIndex >= 0 && optionIndex < uchihaClanNinjasRecords.size();
 
                         if (isValidIndex) {
                             Uchiha updatedUchihaNinja = new Uchiha(
@@ -132,10 +143,37 @@ public class Main {
                                     updatedNinja.clan
                             );
 
-                            uchihaNinjasRecords.set(optionIndex, updatedUchihaNinja);
+                            uchihaClanNinjasRecords.set(optionIndex, updatedUchihaNinja);
 
-                            Uchiha uchihaNinja = uchihaNinjasRecords.get(optionIndex);
+                            Uchiha uchihaNinja = uchihaClanNinjasRecords.get(optionIndex);
+                            System.out.println(uchihaNinja.getInfoSquare());
                             System.out.println(uchihaNinja.getName() + " is updated");
+
+                            updatedRecordsNumber++;
+
+                        }  else {
+                            System.out.println("❌ Invalid index");
+                        }
+
+                    }
+
+                    if(clan.equals("Hyuga")){
+                         isValidIndex = optionIndex >= 0 && optionIndex < hyugaClanNinjasRecords.size();
+
+                        if (isValidIndex) {
+                            Hyuga updatedHyugaNinja = new Hyuga(
+                                    updatedNinja.name,
+                                    updatedNinja.age,
+                                    updatedNinja.level,
+                                    updatedNinja.specialSkill,
+                                    updatedNinja.clan
+                            );
+
+                            hyugaClanNinjasRecords.set(optionIndex, updatedHyugaNinja);
+
+                            Hyuga hyugaNinja = hyugaClanNinjasRecords.get(optionIndex);
+                            System.out.println(hyugaNinja.getInfoSquare());
+                            System.out.println(hyugaNinja.getName() + " is updated");
 
                             updatedRecordsNumber++;
 
@@ -160,6 +198,7 @@ public class Main {
                             withoutClanNinjasRecords.set(optionIndex, updatedWithoutClanNinja);
 
                             Ninja withoutNinja = withoutClanNinjasRecords.get(optionIndex);
+                            System.out.println(withoutNinja.getInfoSquare());
                             System.out.println(withoutNinja.getName() + " is updated");
 
                             updatedRecordsNumber++;
@@ -176,15 +215,54 @@ public class Main {
 
                     optionIndex = Register.getIdxFromOption(input);
 
-                    if(clan.equals("Uchiha")){
-                        isValidIndex = optionIndex >= 0 && optionIndex < uchihaNinjasRecords.size();
+                    if(clan.equals("Uzumaki")){
+                        isValidIndex = optionIndex >= 0 && optionIndex < uzumakiClanNinjasRecords.size();
 
                         if (isValidIndex) {
-                            Ninja ninja = uchihaNinjasRecords.get(optionIndex);
-                            System.out.println(ninja.getInfoSquare());
+                            Uzumaki uzumakiNinja = uzumakiClanNinjasRecords.get(optionIndex);
+                            System.out.println(uzumakiNinja.getInfoSquare());
 
-                            uchihaNinjasRecords.remove(optionIndex);
-                            System.out.println(ninja.getName() + " is removed");
+                            uzumakiClanNinjasRecords.remove(optionIndex);
+                            System.out.println(uzumakiNinja.getInfoSquare());
+                            System.out.println(uzumakiNinja.getName() + " is removed");
+
+                            deletedRecordsNumber++;
+
+                        } else {
+                            System.out.println("❌ Invalid index");
+                        }
+
+                    }
+
+                    if(clan.equals("Uchiha")){
+                        isValidIndex = optionIndex >= 0 && optionIndex < uchihaClanNinjasRecords.size();
+
+                        if (isValidIndex) {
+                            Uchiha uchihaNinja = uchihaClanNinjasRecords.get(optionIndex);
+                            System.out.println(uchihaNinja.getInfoSquare());
+
+                            uchihaClanNinjasRecords.remove(optionIndex);
+                            System.out.println(uchihaNinja.getInfoSquare());
+                            System.out.println(uchihaNinja.getName() + " is removed");
+
+                            deletedRecordsNumber++;
+
+                        } else {
+                            System.out.println("❌ Invalid index");
+                        }
+
+                    }
+
+                    if(clan.equals("Hyuga")){
+                        isValidIndex = optionIndex >= 0 && optionIndex < hyugaClanNinjasRecords.size();
+
+                        if (isValidIndex) {
+                            Hyuga hyugaNinja = hyugaClanNinjasRecords.get(optionIndex);
+                            System.out.println(hyugaNinja.getInfoSquare());
+
+                            hyugaClanNinjasRecords.remove(optionIndex);
+                            System.out.println(hyugaNinja.getInfoSquare());
+                            System.out.println(hyugaNinja.getName() + " is removed");
 
                             deletedRecordsNumber++;
 
@@ -202,6 +280,7 @@ public class Main {
                             System.out.println(ninja.getInfoSquare());
 
                             withoutClanNinjasRecords.remove(optionIndex);
+                            System.out.println(ninja.getInfoSquare());
                             System.out.println(ninja.getName() + " is removed");
 
                             deletedRecordsNumber++;
@@ -214,23 +293,43 @@ public class Main {
 
                     break;
                 case 4:
-                    if(!uchihaNinjasRecords.isEmpty()){
-                        for (int i = 0; i < uchihaNinjasRecords.size(); i++) {
+                    if(!uzumakiClanNinjasRecords.isEmpty()){
+                        for (int i = 0; i < uzumakiClanNinjasRecords.size(); i++) {
+                            int listItem = i + 1;
+                            System.out.println("\n " + listItem + ". Ninja clãn Uzumaki:");
+                            System.out.println(uzumakiClanNinjasRecords.get(i).getInfoSquare());
+                        }
+                    }
+
+                    if(!uchihaClanNinjasRecords.isEmpty()){
+                        for (int i = 0; i < uchihaClanNinjasRecords.size(); i++) {
                             int listItem = i + 1;
                             System.out.println("\n " + listItem + ". Ninja clãn Uchiha:");
-                            System.out.println(uchihaNinjasRecords.get(i).getInfoSquare());
+                            System.out.println(uchihaClanNinjasRecords.get(i).getInfoSquare());
+                        }
+                    }
+
+                    if(!hyugaClanNinjasRecords.isEmpty()){
+                        for (int i = 0; i < hyugaClanNinjasRecords.size(); i++) {
+                            int listItem = i + 1;
+                            System.out.println("\n " + listItem + ". Ninja clãn Hyuga:");
+                            System.out.println(hyugaClanNinjasRecords.get(i).getInfoSquare());
                         }
                     }
 
                     if(!withoutClanNinjasRecords.isEmpty()){
                         for (int i = 0; i < withoutClanNinjasRecords.size(); i++) {
                             int listItem = i + 1;
-                            System.out.println("\n " + listItem + ". Ninja without:");
+                            System.out.println("\n " + listItem + ". Ninja without clan:");
                             System.out.println(withoutClanNinjasRecords.get(i).getInfoSquare());
                         }
                     }
 
-                    if(!uchihaNinjasRecords.isEmpty() && !withoutClanNinjasRecords.isEmpty()) {
+                    if(!uzumakiClanNinjasRecords.isEmpty()
+                            && !uchihaClanNinjasRecords.isEmpty()
+                            && !hyugaClanNinjasRecords.isEmpty()
+                            && !withoutClanNinjasRecords.isEmpty()
+                    ) {
                         System.out.println("You don't register anyone in list");
                     }
                     break;
