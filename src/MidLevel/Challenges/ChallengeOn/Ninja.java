@@ -1,0 +1,61 @@
+package MidLevel.Challenges.ChallengeOn;
+
+enum Level {
+    GENIN, CHUNIN, JONIN
+};
+
+public abstract class Ninja {
+    protected String name;
+    protected int age;
+    protected Level level;
+    protected Mission currentMission;
+    protected String specialSkill;
+
+    Ninja(String name, int age, Level level, String specialSkill){
+        this.name = name;
+        this.age = age;
+        this.level = level;
+        this.specialSkill = specialSkill;
+    }
+
+    public void setSpecialSkill(String specialSkill){
+        this.specialSkill = specialSkill;
+    }
+
+    public String getSpecialSkill(){
+        return specialSkill;
+    }
+
+    public void SetCurrentMission(String name, Mission.Status status, Mission.Rank rank){
+        this.currentMission = new Mission(name, status, rank);
+    }
+
+    public Mission getCurrentMission(){
+        return currentMission;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public int getAge(){
+        return age;
+    }
+
+    public Level getLevel(){
+        return level;
+    }
+
+    public String getInfoSquare() {
+        String info = String.format(
+                "|%-15s|%-5s|%-10s|%-20s|%-15s|\n",
+                "Name", "Age", "Level", "Mission", "Skill"
+        );
+        info += "--------------------------------------------------------------\n";
+        info += String.format(
+                "|%-15s|%-5d|%-10s|%-20s|%-15s|\n",
+                name, age, level, currentMission, specialSkill
+        );
+        return info;
+    }
+}

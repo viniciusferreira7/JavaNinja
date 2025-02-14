@@ -1,0 +1,27 @@
+package MidLevel.Challenges.ChallengeOn;
+
+public class Uchiha extends Ninja {
+    private final String doujutsu;
+
+    Uchiha(String name, int age, Level level, String specialSkill){
+        super(name, age, level, specialSkill);
+        this.doujutsu = "Sharingan";
+    }
+
+    public String getDoujutsu(){
+        return this.doujutsu;
+    }
+
+    public String getInfoSquare() {
+        String info = String.format(
+                "|%-15s|%-5s|%-10s|%-20s|%-15s|%-15s|\n",
+                "Name", "Age", "Level", "Mission", "Skill", "Doujutsu"
+        );
+        info += "--------------------------------------------------------------\n";
+        info += String.format(
+                "|%-15s|%-5d|%-10s|%-20s|%-15s|%-15s|\n",
+                name, age, level, currentMission, specialSkill, doujutsu
+        );
+        return info;
+    }
+}
