@@ -12,6 +12,7 @@ public class Uchiha extends Ninja {
         return this.doujutsu;
     }
 
+    @Override
     public String getInfoSquare() {
         String info = String.format(
                 "|%-15s|%-5s|%-10s|%-20s|%-15s|%-15s|%-15s|%-15s|\n",

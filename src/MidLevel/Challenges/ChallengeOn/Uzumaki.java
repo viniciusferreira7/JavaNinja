@@ -12,6 +12,7 @@ public class Uzumaki extends Ninja {
         return this.specialAbility;
     }
 
+    @Override
     public String getInfoSquare() {
         String info = String.format(
                 "|%-15s|%-5s|%-10s|%-20s|%-15s|%-15s|%-15s|%-15s|\n",

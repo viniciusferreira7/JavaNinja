@@ -18,6 +18,7 @@ public class Main {
         naruto.village = "Konoha";
 
         System.out.println("naruto.name = " + naruto.name);
+        naruto.makeJutsu();
         naruto.activateWiseMode();
         System.out.println(naruto.welcomeMyNameIs());
         System.out.println(naruto.missingYearsToBecomeHokage(20));
