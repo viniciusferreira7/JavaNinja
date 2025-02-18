@@ -2,7 +2,7 @@ package MidLevel;
 
 public class Main {
     public static void main(String[] args){
-        Uchiha sasuke = new Uchiha();
+        /*Uchiha sasuke = new Uchiha();
         sasuke.name = "Sasuke Uchiha";
         sasuke.age = 15;
         sasuke.village = "Konoha";
@@ -32,6 +32,20 @@ public class Main {
         himawari.activateWiseMode();
         System.out.println(himawari.welcomeMyNameIs());
         System.out.println(himawari.missingYearsToBecomeHokage(20));
+*/
+
+        Hokage hashirama = new Hokage();
+        hashirama.name = "Hashirama";
+        hashirama.age = 52;
+        hashirama.isAlive = false;
+        System.out.println(hashirama.name);
+
+        Hokage tobirama = new Hokage("Tobirama", 45, false);
+        System.out.println(tobirama.name);
+
+        Hokage hiruzen = new Hokage(45);
+        System.out.println(hiruzen.age);
+
 
 
     }
