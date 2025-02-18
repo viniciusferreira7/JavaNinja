@@ -40,7 +40,7 @@ public class Main {
         hashirama.isAlive = false;
         System.out.println(hashirama.name);
 
-        Hokage tobirama = new Hokage("Tobirama", 45, false);
+        Hokage tobirama = new Hokage("Tobirama", 45);
         System.out.println(tobirama.name);
 
         Hokage hiruzen = new Hokage(45);

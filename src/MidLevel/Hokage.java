@@ -12,8 +12,9 @@ public class Hokage {
     public Hokage(){};
 
     // ❌
-    public Hokage(String name){
+    public Hokage(String name, int age){
         this.name = name;
+        this.age = age;
     }
 
     // ❌
