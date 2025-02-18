@@ -1,36 +1,28 @@
 package MidLevel;
 
-public class Hokage {
-    String name;
-    int age;
-    boolean isAlive;
-    String village;
-    double height;
-    double weight;
+public abstract class Hokage {
+   protected final String name;
+   protected final int age;
+   protected final boolean isAlive;
 
-    // ✔️ NoArgs constructor
-    public Hokage(){};
-
-    // ❌
-    public Hokage(String name, int age){
-        this.name = name;
-        this.age = age;
+    public String getName() {
+        return name;
     }
 
-    // ❌
-    public Hokage(int age){
-        this.age = age;
+    public int getAge() {
+        return age;
+    }
+
+    public boolean isAlive() {
+        return isAlive;
     }
 
     // ✔️ All args constructor
-
-
-    public Hokage(String name, int age, boolean isAlive, String village, double height, double weight) {
+    public Hokage(String name, int age, boolean isAlive) {
         this.name = name;
         this.age = age;
         this.isAlive = isAlive;
-        this.village = village;
-        this.height = height;
-        this.weight = weight;
     }
+
+    public abstract void wisdomHokage();
 }

@@ -34,17 +34,15 @@ public class Main {
         System.out.println(himawari.missingYearsToBecomeHokage(20));
 */
 
-        Hokage hashirama = new Hokage();
-        hashirama.name = "Hashirama";
-        hashirama.age = 52;
-        hashirama.isAlive = false;
+        Senju hashirama = new Senju("Hashirama", 43, false);
         System.out.println(hashirama.name);
+        hashirama.wisdomHokage();
 
-        Hokage tobirama = new Hokage("Tobirama", 45);
+       /* Hokage tobirama = new Hokage("Tobirama", 45);
         System.out.println(tobirama.name);
 
         Hokage hiruzen = new Hokage(45);
-        System.out.println(hiruzen.age);
+        System.out.println(hiruzen.age);*/
 
 
 
